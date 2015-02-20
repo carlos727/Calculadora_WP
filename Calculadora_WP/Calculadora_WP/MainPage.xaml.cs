@@ -85,7 +85,7 @@ namespace Calculadora_WP
                         if (s.Equals("*")) array[i] = "" + (n1 * n2);
                         if (s.Equals("/")) array[i] = "" + (n1 / n2);
                         array.RemoveAt(i-1);
-                        array.RemoveAt(i+1);
+                        array.RemoveAt(i);
                         swm = true;
                     }
                     i++;
@@ -105,7 +105,7 @@ namespace Calculadora_WP
                             if (s.Equals("+")) array[i] = "" + (n1 + n2);
                             if (s.Equals("-")) array[i] = "" + (n1 - n2);
                             array.RemoveAt(i - 1);
-                            array.RemoveAt(i+1);
+                            array.RemoveAt(i);
                             sw = true;
                         }
                         i++;
@@ -133,7 +133,7 @@ namespace Calculadora_WP
                             if (s.Equals("-") && text.Substring(i, text.Length - j).Equals("")) {
                                 unary = s; //s = - si encuentra el simbolo unario
                             } else {
-                                String se = unary + text.Substring(i, text.Length - (j + 1));
+                                String se = unary + text.Substring(i, j - i);
                                 if (!se.Equals("")) components.Add(se);
                                 components.Add(s);
                                 unary = "";
