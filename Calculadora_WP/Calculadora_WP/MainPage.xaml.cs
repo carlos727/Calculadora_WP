@@ -115,42 +115,42 @@ namespace Calculadora_WP
             }
         }
 
-        private void solveExpression(object sender, RoutedEventArgs e)
+        private void solveExpressionB(object sender, RoutedEventArgs e)
         {
             List<String> components;
             String text;
             text = expression.Text;
             if (!text.Equals("")) {
-                    components = new List<String>();
-                    int i = 0;
-                    String unary = "";
-                    while (i < text.Length) { //Recorremos la expresion sacando las operaciones y los operandos
-                        int j = i;
-                        bool sw = false;
-                        while (j < text.Length && sw == false) {
-                            String s = text.Substring(j, 1);
-                            if (s.Equals("+") || s.Equals("*") || s.Equals("-") || s.Equals("/")) {
-                                if (s.Equals("-") && text.Substring(i, text.Length - j).Equals("")) {
-                                    unary = s; //s = - si encuentra el simbolo unario
-                                } else {
-                                    String se = unary + text.Substring(i, text.Length - (j + 1));
-                                    if (!se.Equals("")) components.Add(se);
-                                    components.Add(s);
-                                    unary = "";
-                                }
-                                sw = true;
+                components = new List<String>();
+                int i = 0;
+                String unary = "";
+                while (i < text.Length) { //Recorremos la expresion sacando las operaciones y los operandos
+                    int j = i;
+                    bool sw = false;
+                    while (j < text.Length && !sw) {
+                        String s = text.Substring(j, 1);
+                        if (s.Equals("+") || s.Equals("*") || s.Equals("-") || s.Equals("/")) {
+                            if (s.Equals("-") && text.Substring(i, text.Length - j).Equals("")) {
+                                unary = s; //s = - si encuentra el simbolo unario
+                            } else {
+                                String se = unary + text.Substring(i, text.Length - (j + 1));
+                                if (!se.Equals("")) components.Add(se);
+                                components.Add(s);
+                                unary = "";
                             }
-                            j++; //continuo leyendo
+                            sw = true;
                         }
-                        if (j >= text.Length) {
-                            String s = unary + text.Substring(i);
-                            if (!s.Equals(""))
-                                components.Add(s); //Si termine de recorrer la expresion y no encontre una operacion, incluyo lo ultimo no reconocido como un operando
-                        }
-                        i = j;
+                        j++; //continuo leyendo
                     }
-                        Double r = solveExpression(components); //Calculo el resultado, si hay un error se captura y se muestra por pantalla
-                        result.Text = r.ToString();
+                    if (j >= text.Length) {
+                        String s = unary + text.Substring(i);
+                        if (!s.Equals(""))
+                            components.Add(s); //Si termine de recorrer la expresion y no encontre una operacion, incluyo lo ultimo no reconocido como un operando
+                    }
+                    i = j;
+                }
+                Double r = solveExpression(components); //Calculo el resultado, si hay un error se captura y se muestra por pantalla
+                result.Text = r.ToString();
             }
         }
 

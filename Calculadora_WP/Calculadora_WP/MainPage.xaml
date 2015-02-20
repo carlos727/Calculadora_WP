@@ -42,7 +42,7 @@
             <!--Buttons-->
             <Button Content="CLC" Grid.Row="4" Click="clear"/>
             <Button Content="DEL" Grid.Row="4" Grid.Column="1" Click="delete"/>
-            <Button Content="=" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Click="solveExpression"/>
+            <Button Content="=" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Click="solveExpressionB"/>
             <Button Content="." Grid.Row="3" Click="writeNumber"/>
             <Button Content="0" Grid.Row="3" Grid.Column="1" Click="writeNumber"/>
             <Button Content="-/+" Grid.Row="3" Grid.Column="2" Click="negative"/>
